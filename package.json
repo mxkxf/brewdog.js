@@ -1,5 +1,5 @@
 {
-  "name": "mikefrancis/brewdog-js",
+  "name": "brewdog-js",
   "version": "1.0.0",
   "description": "A JS wrapper for punkapi.com",
   "main": "dist/index.js",
@@ -7,9 +7,13 @@
     "test": "jest",
     "transpile": "babel src --out-dir dist"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikefrancis/brewdog.js.git"
+  },
   "keywords": ["brewdog", "beer"],
   "author": "Mike Francis <mikeffrancis@gmail.com>",
-  "license": "MIT",
+  "license": "WTFPL",
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-jest": "^18.0.0",
