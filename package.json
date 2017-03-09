@@ -5,8 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "transpile": "babel src --out-dir dist"
+    "compile": "tsc"
   },
   "repository": {
     "type": "git",
@@ -19,20 +20,13 @@
   "author": "Mike Francis <mikeffrancis@gmail.com>",
   "license": "WTFPL",
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-jest": "^18.0.0",
-    "babel-preset-latest": "^6.16.0",
     "coveralls": "^2.11.15",
     "jest": "^18.1.0",
-    "jest-fetch-mock": "^1.0.6"
+    "jest-fetch-mock": "^1.0.6",
+    "typescript": "^2.2.1",
+    "tslint": "^4.5.1"
   },
   "dependencies": {
     "qs": "^6.3.0"
-  },
-  "jest": {
-    "automock": false,
-    "setupFiles": [
-      "./test/setup.js"
-    ]
   }
 }

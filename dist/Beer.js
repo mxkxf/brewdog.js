@@ -1,52 +1,50 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _Client2 = require('./Client');
-
-var _Client3 = _interopRequireDefault(_Client2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Beer = function (_Client) {
-    _inherits(Beer, _Client);
-
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
+var Client_1 = require("./Client");
+var Beer = (function (_super) {
+    __extends(Beer, _super);
     function Beer() {
-        _classCallCheck(this, Beer);
-
-        return _possibleConstructorReturn(this, (Beer.__proto__ || Object.getPrototypeOf(Beer)).apply(this, arguments));
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-
-    _createClass(Beer, [{
-        key: 'all',
-        value: function all(callback) {
-            var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-            return this.get('beers', callback, params);
-        }
-    }, {
-        key: 'find',
-        value: function find(id, callback) {
-            return this.get('beers/' + id, callback);
-        }
-    }, {
-        key: 'random',
-        value: function random(callback) {
-            return this.get('beers/random', callback);
-        }
-    }]);
-
+    /**
+     * Get all the beers.
+     *
+     * @param {callback} callback
+     * @param {object} params
+     * @return {Promise}
+     */
+    Beer.prototype.all = function (callback, params) {
+        return this.get("beers", callback, params);
+    };
+    /**
+     * Get a single beer by it's ID.
+     *
+     * @param number id
+     * @param {callback} callback
+     * @return {Promise}
+     */
+    Beer.prototype.find = function (id, callback) {
+        return this.get("beers/" + id, callback);
+    };
+    /**
+     * Get a single, random beer.
+     *
+     * @param {callback} callback
+     * @return {Promise}
+     */
+    Beer.prototype.random = function (callback) {
+        return this.get("beers/random", callback);
+    };
     return Beer;
-}(_Client3.default);
-
-exports.default = Beer;
+}(Client_1["default"]));
+exports["default"] = Beer;
