@@ -5,8 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
-    "coveralls": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "transpile": "babel src --out-dir dist"
+    "dev": "jest --watch",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "compile": "tsc"
   },
   "repository": {
     "type": "git",
@@ -19,20 +20,46 @@
   "author": "Mike Francis <mikeffrancis@gmail.com>",
   "license": "WTFPL",
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-jest": "^18.0.0",
-    "babel-preset-latest": "^6.16.0",
-    "coveralls": "^2.11.15",
-    "jest": "^18.1.0",
-    "jest-fetch-mock": "^1.0.6"
+    "@types/jest": "^22.0.1",
+    "jest": "^22.1.4",
+    "jest-fetch-mock": "^1.4.0",
+    "ts-jest": "^22.0.1",
+    "tslint": "^4.5.1",
+    "typescript": "^2.2.1"
   },
   "dependencies": {
     "qs": "^6.3.0"
   },
   "jest": {
-    "automock": false,
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "collectCoverage": true,
+    "mapCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.d.ts",
+      "!**/node_modules/**",
+      "!**/__mocks__/**",
+      "!**/__tests__/**"
+    ],
+    "coverageReporters": [
+      "lcov"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
     "setupFiles": [
-      "./test/setup.js"
+      "./src/__tests__/setup.js"
+    ],
+    "testPathIgnorePatterns": [
+        "setup.js"
     ]
   }
 }
