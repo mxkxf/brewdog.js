@@ -17,7 +17,7 @@ export default class Client {
      * @return {Promise}
      */
     protected get(endpoint: string, callback: (data) => any, params?: Object): Promise<any> {
-        let url = this.buildUrl(endpoint, params);
+        const url = this.buildUrl(endpoint, params);
 
         return fetch(url)
             .then((response) => response.json())
@@ -38,6 +38,6 @@ export default class Client {
             url += `?${qs.stringify(params)}`;
         }
 
-        return '';
+        return url;
     }
 }

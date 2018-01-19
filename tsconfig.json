@@ -1,12 +1,12 @@
 {
     "include": [
-        "src/**/*"
+        "src/**/*.ts"
     ],
     "exclude": [
-        "node_modules",
-        "test"
+        "node_modules"
     ],
     "compilerOptions": {
-        "outDir": "dist"
+        "outDir": "dist",
+        "sourceMap": true
     }
 }
