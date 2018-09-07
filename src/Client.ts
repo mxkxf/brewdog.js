@@ -1,27 +1,27 @@
+import axios, { AxiosResponse } from "axios";
 import qs from "qs";
 
-export default class Client {
+export default abstract class Client {
+
     /**
-     * Create a new instance of a HTTP client.
-     *
-     * @param {string} baseUrl
+     * Base URL for API.
      */
-    constructor(private baseUrl: string = "https://api.punkapi.com/v2") {}
+    private baseUrl: string = "https://api.punkapi.com/v2";
 
     /**
      * Make a GET request.
      *
      * @param {string} endpoint
-     * @param {callback} callback
      * @param {Object} params
+     *
      * @return {Promise}
      */
-    protected get(endpoint: string, callback: (data) => any, params?: Object): Promise<any> {
+    protected async get(endpoint: string, params?: Object): Promise<any> {
         const url = this.buildUrl(endpoint, params);
 
-        return fetch(url)
-            .then((response) => response.json())
-            .then((json) => callback(json));
+        const response: AxiosResponse = await axios.get(url);
+
+        return response.data;
     }
 
     /**
