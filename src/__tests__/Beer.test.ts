@@ -1,37 +1,42 @@
-import Beer from "./../Beer";
+import axios from "axios";
+import { Beer as Client } from "./../index";
 
-const beers = new Beer();
+jest.mock("axios");
 
-interface IBeer {
-    name: string;
-};
+const client = new Client();
 
-test("gets a paginated list of beers", () => {
-    fetch.mockResponse(JSON.stringify([{
-        name: "Punk IPA",
-    }]));
-
-    beers.all((results) => {
-        expect(results[0].name).toEqual("Punk IPA");
+test("gets a paginated list of beers", async () => {
+    axios.get.mockResolvedValue({
+        data: [{
+            name: "Punk IPA",
+        }],
     });
+
+    const results = await client.all();
+
+    expect(results[0]).toHaveProperty("name");
 });
 
-test("get a single beer by ID", () => {
-    fetch.mockResponse(JSON.stringify({
-        name: "Punk IPA",
-    }));
-
-    beers.find(1, (result: IBeer) => {
-        expect(result.name).toEqual("Punk IPA");
+test("get a single beer by ID", async () => {
+    axios.get.mockResolvedValue({
+        data: [{
+            name: "Punk IPA",
+        }],
     });
+
+    const result = await client.find(1);
+
+    expect(result[0]).toHaveProperty("name");
 });
 
-test("gets a random beer", () => {
-    fetch.mockResponse(JSON.stringify({
-        name: "Punk IPA",
-    }));
-
-    beers.random((result) => {
-        expect(result.name).toEqual("Punk IPA");
+test("gets a random beer", async () => {
+    axios.get.mockResolvedValue({
+        data: [{
+            name: "Punk IPA",
+        }],
     });
+
+    const result = await client.random();
+
+    expect(result[0]).toHaveProperty("name");
 });

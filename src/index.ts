@@ -1,5 +1,1 @@
-import Beer from "./Beer";
-
-export default {
-    Beer,
-};
+export { default as Beer } from "./Beer";

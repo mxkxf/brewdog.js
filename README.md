@@ -21,11 +21,9 @@ yarn add brewdog-js
 ## Usage
 
 ```javascript
-import Api from 'brewdog-js';
+import { Beer } from 'brewdog-js';
 
-const beer = new Api.Beer();
+const beers = new Beer();
 
-beer.all(beers => {
-    console.log(beers);
-});
+beers.all();
 ```

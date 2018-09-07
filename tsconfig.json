@@ -1,12 +1,20 @@
 {
-    "include": [
-        "src/**/*.ts"
-    ],
-    "exclude": [
-        "node_modules"
-    ],
     "compilerOptions": {
+        "declaration": true,
+        "lib": [
+            "es2015"
+        ],
+        "target": "es2015",
+        "module": "commonjs",
+        "moduleResolution": "node",
         "outDir": "dist",
         "sourceMap": true
-    }
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "**/__mocks__",
+        "**/__tests__"
+    ]
 }
