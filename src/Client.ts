@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import qs from "qs";
+import { stringify } from "qs";
 
 export default abstract class Client {
 
@@ -35,7 +35,7 @@ export default abstract class Client {
         let url = `${this.baseUrl}/${endpoint}`;
 
         if (params) {
-            url += `?${qs.stringify(params)}`;
+            url += `?${stringify(params)}`;
         }
 
         return url;
