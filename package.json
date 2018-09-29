@@ -3,11 +3,13 @@
   "version": "2.1.0",
   "description": "A JS wrapper for punkapi.com",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest --runInBand",
     "dev": "jest --watch",
     "lint": "tslint 'src/**/*.ts'",
-    "compile": "tsc"
+    "compile": "tsc",
+    "prepublish": "npm run compile"
   },
   "repository": {
     "type": "git",
