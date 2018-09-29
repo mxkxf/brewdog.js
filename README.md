@@ -25,5 +25,5 @@ import { Beer } from 'brewdog-js';
 
 const beers = new Beer();
 
-beers.all();
+console.log(await beers.all());
 ```
