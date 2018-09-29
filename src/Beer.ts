@@ -29,7 +29,7 @@ export default class Beer extends Client {
      *
      * @return {Promise}
      */
-    public random(): Promise<any> {
-        return this.get("beers/random");
+    public async random(): Promise<any> {
+        return await this.get("beers/random");
     }
 }
