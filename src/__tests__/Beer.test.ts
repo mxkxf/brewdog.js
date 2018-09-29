@@ -17,6 +17,20 @@ test("gets a paginated list of beers", async () => {
     expect(results[0]).toHaveProperty("name");
 });
 
+test("gets a filtered, paginated list of beers", async () => {
+    axios.get.mockResolvedValue({
+        data: [{
+            name: "Hardcore IPA",
+        }],
+    });
+
+    const results = await client.all({
+        abv_gt: 6,
+    });
+
+    expect(results[0]).toHaveProperty("name");
+});
+
 test("get a single beer by ID", async () => {
     axios.get.mockResolvedValue({
         data: [{

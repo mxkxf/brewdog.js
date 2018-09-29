@@ -1,6 +1,6 @@
 {
   "name": "brewdog-js",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "A JS wrapper for punkapi.com",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -29,6 +29,7 @@
     "typescript": "^3.0.3"
   },
   "dependencies": {
+    "@types/qs": "^6.5.1",
     "axios": "^0.18.0",
     "qs": "^6.3.0"
   },
