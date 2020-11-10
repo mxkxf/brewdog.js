@@ -1,65 +1,76 @@
-import axios, { AxiosResponse } from "axios";
-import { Beer as Client } from "./../index";
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
 
-jest.mock("axios");
-const mockedAxios = axios as jest.Mocked<typeof axios>;
+import { Beer } from '../index';
 
-const client = new Client();
+describe('Beer', () => {
+  const server = setupServer(
+    rest.get('https://api.punkapi.com/v2/beers', (req, res, ctx) => {
+      if (req.url.search) {
+        return res(
+          ctx.json([
+            {
+              name: 'Hardcore IPA',
+            },
+          ])
+        );
+      }
 
-test("gets a paginated list of beers", async () => {
-  mockedAxios.get.mockResolvedValue({
-    data: [
-      {
-        name: "Punk IPA",
-      },
-    ],
-  } as any);
+      return res(
+        ctx.json([
+          {
+            name: 'Punk IPA',
+          },
+        ])
+      );
+    }),
+    rest.get('https://api.punkapi.com/v2/beers/1', (_, res, ctx) =>
+      res(
+        ctx.json({
+          name: 'Buzz',
+        })
+      )
+    ),
+    rest.get('https://api.punkapi.com/v2/beers/random', (_, res, ctx) =>
+      res(
+        ctx.json({
+          name: '77 Lager',
+        })
+      )
+    )
+  );
 
-  const results = await client.all();
-
-  expect(results[0]).toHaveProperty("name");
-});
-
-test("gets a filtered, paginated list of beers", async () => {
-  mockedAxios.get.mockResolvedValue({
-    data: [
-      {
-        name: "Hardcore IPA",
-      },
-    ],
-  } as any);
-
-  const results = await client.all({
-    abv_gt: 6,
+  beforeAll(() => {
+    server.listen();
   });
 
-  expect(results[0]).toHaveProperty("name");
-});
+  afterAll(() => {
+    server.close();
+  });
 
-test("get a single beer by ID", async () => {
-  mockedAxios.get.mockResolvedValue({
-    data: [
-      {
-        name: "Punk IPA",
-      },
-    ],
-  } as any);
+  it('gets a paginated list of beers', async () => {
+    const results = await new Beer().all();
 
-  const result = await client.find(1);
+    expect(results[0].name).toBe('Punk IPA');
+  });
 
-  expect(result[0]).toHaveProperty("name");
-});
+  it('gets a filtered, paginated list of beers', async () => {
+    const results = await new Beer().all({
+      abv_gt: 7,
+    });
 
-test("gets a random beer", async () => {
-  mockedAxios.get.mockResolvedValue({
-    data: [
-      {
-        name: "Punk IPA",
-      },
-    ],
-  } as any);
+    expect(results[0].name).toBe('Hardcore IPA');
+  });
 
-  const result = await client.random();
+  it('get a single beer by ID', async () => {
+    const result = await new Beer().find(1);
 
-  expect(result[0]).toHaveProperty("name");
+    expect(result.name).toBe('Buzz');
+  });
+
+  it('gets a random beer', async () => {
+    const result = await new Beer().random();
+
+    expect(result.name).toBe('77 Lager');
+  });
 });
