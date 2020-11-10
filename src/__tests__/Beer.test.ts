@@ -26,16 +26,20 @@ describe('Beer', () => {
     }),
     rest.get('https://api.punkapi.com/v2/beers/1', (_, res, ctx) =>
       res(
-        ctx.json({
-          name: 'Buzz',
-        })
+        ctx.json([
+          {
+            name: 'Buzz',
+          },
+        ])
       )
     ),
     rest.get('https://api.punkapi.com/v2/beers/random', (_, res, ctx) =>
       res(
-        ctx.json({
-          name: '77 Lager',
-        })
+        ctx.json([
+          {
+            name: '77 Lager',
+          },
+        ])
       )
     )
   );
