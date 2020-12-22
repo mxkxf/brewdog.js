@@ -1,6 +1,6 @@
 # brewdog.js
 
-[![Build Status](https://travis-ci.org/mikefrancis/brewdog.js.svg?branch=master)](https://travis-ci.org/mikefrancis/brewdog.js) [![codecov](https://codecov.io/gh/mikefrancis/brewdog.js/branch/master/graph/badge.svg)](https://codecov.io/gh/mikefrancis/brewdog.js) [![npm](https://img.shields.io/npm/v/brewdog-js.svg)](https://www.npmjs.com/package/brewdog-js)
+[![Build Status](https://github.com/mikefrancis/brewdog.js/workflows/CI/badge.svg)](https://github.com/mikefrancis/brewdog.js/actions?query=workflow%3ACI) [![codecov](https://codecov.io/gh/mikefrancis/brewdog.js/branch/master/graph/badge.svg)](https://codecov.io/gh/mikefrancis/brewdog.js) [![npm](https://img.shields.io/npm/v/brewdog-js.svg)](https://www.npmjs.com/package/brewdog-js)
 
 A JS wrapper for [punkapi.com](https://punkapi.com).
 
