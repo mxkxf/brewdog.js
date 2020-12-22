@@ -35,4 +35,4 @@ jobs:
         run: bash <(curl -s https://codecov.io/bash)
 
       - name: Publish to NPM
-       run: npm publish
+        run: npm publish
